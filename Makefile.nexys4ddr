@@ -1,0 +1,17 @@
+# See LICENSE for license details.
+base_dir := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
+BUILD_DIR := $(base_dir)/builds/nexys4ddr
+FPGA_DIR := $(base_dir)/fpga/nexys4ddr
+MODEL := Nexys4DDRTop
+PROJECT := sifive.freedom.everywhere.nexys4ddr
+CONFIG_PROJECT := sifive.freedom.everywhere.nexys4ddr
+CONFIG := Nexys4DDRConfig
+
+rocketchip_dir := $(base_dir)/rocket-chip
+sifiveblocks_dir := $(base_dir)/sifive-blocks
+EXTRA_FPGA_VSRCS := \
+	$(rocketchip_dir)/vsrc/AsyncResetReg.v \
+	$(rocketchip_dir)/vsrc/DebugTransportModuleJtag.v \
+	$(sifiveblocks_dir)/vsrc/SRLatch.v
+
+include common.mk
