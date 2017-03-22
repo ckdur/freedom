@@ -10,7 +10,11 @@ module system
   inout wire led_1,
   inout wire led_2,
   inout wire led_3,
-
+  //inout wire led_4,
+  //inout wire led_5,
+  //inout wire led_6,
+  //inout wire led_7,
+  
   // RGB LEDs, 3 pins each
   output wire led0_r,
   output wire led0_g,
@@ -394,7 +398,7 @@ module system
   reset_sys ip_reset_sys
   (
     .slowest_sync_clk(clk_out1),
-    .ext_reset_in(ck_rst & SRST_n & ~EOS), // Active-low
+    .ext_reset_in(ck_rst & SRST_n), // Active-low
     .aux_reset_in(1'b1),
     .mb_debug_sys_rst(1'b0),
     .dcm_locked(mmcm_locked),
@@ -1133,8 +1137,12 @@ module system
   // Use the LEDs for some more useful debugging things.
   assign led_0 = ck_rst;
   assign led_1 = SRST_n;
-  assign led_2 = dut_io_pads_aon_pmu_dwakeup_n_i_ival;
+  assign led_2 = ck_rst & SRST_n & EOS;//dut_io_pads_aon_pmu_dwakeup_n_i_ival;
   assign led_3 = gpio_14;
+  //assign led_4 = ~jd_0;
+  //assign led_5 = ~jd_1;
+  //assign led_6 = ~jd_4;
+  //assign led_7 = ~jd_5;
 
   Nexys4DDRTop dut
   (

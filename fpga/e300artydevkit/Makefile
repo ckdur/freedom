@@ -6,7 +6,7 @@ VIVADOFLAGS := \
 
 # Path to a program in raw binary format to be flashed into the address that the
 # bootrom jumps to.
-FLASHED_PROGRAM ?=
+FLASHED_PROGRAM ?= 
 
 bit := obj/system.bit
 $(bit): script/impl.tcl  script/init.tcl
