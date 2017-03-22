@@ -398,7 +398,7 @@ module system
   reset_sys ip_reset_sys
   (
     .slowest_sync_clk(clk_out1),
-    .ext_reset_in(ck_rst & SRST_n), // Active-low
+    .ext_reset_in(ck_rst & SRST_n & EOS), // Active-low
     .aux_reset_in(1'b1),
     .mb_debug_sys_rst(1'b0),
     .dcm_locked(mmcm_locked),
